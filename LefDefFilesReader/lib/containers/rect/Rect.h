@@ -1,6 +1,7 @@
 #include "../point/Point.h"
 
 class Rect {
+public:
 	Point First;
 	Point Second;
 
