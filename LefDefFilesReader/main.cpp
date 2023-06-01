@@ -4,6 +4,6 @@ using namespace std;
 
 
 int main() {
-	DefReader defReader
+	DefReader defReader;
 	cout << "Hello world";
 }
