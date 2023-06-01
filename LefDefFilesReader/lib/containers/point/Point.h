@@ -5,13 +5,14 @@ public:
 	double First;
 	double Second;
 
-	Point(double First = 0.0, double Second = 0.0);
+	Point(const double first = 0.0, const double second = 0.0);
+	Point(const Point& value);
 
-	void SetFirst(double value);
-	void SetSecond(double value);
+	void SetFirst(const double value);
+	void SetSecond(const double value);
 
-	double GetFirst(double value);
-	double GetSecond(double value);
+	double GetFirst(const double value) const;
+	double GetSecond(const double value) const;
 
 };
 
