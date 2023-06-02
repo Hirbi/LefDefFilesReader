@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Design/Design.h"
+#include "Design/CellGrid/CellGrid.h"
 #include "Design/row/Row.h"
 #include "Design/track/Track.h"
 #include "../objects/Objects.h"
@@ -23,4 +24,6 @@ private:
 	const Row ReadRow(ifstream& is);
 
 	const Track ReadTracks(ifstream& is);
+
+	const CellGrid ReadGCellGrid(ifstream& is);
 };

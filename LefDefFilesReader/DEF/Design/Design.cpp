@@ -49,3 +49,11 @@ const vector<Track>& Design::GetTrack() const
 void Design::ClearTrack() {
 	Tracks.clear();
 }
+
+void Design::SetGCellGrid(CellGrid gCellGrid) {
+	GCellGrid = gCellGrid;
+}
+
+const CellGrid& Design::GetGCellGrid() const {
+	return GCellGrid;
+}

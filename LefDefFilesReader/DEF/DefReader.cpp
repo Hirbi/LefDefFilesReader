@@ -131,9 +131,10 @@ Design DefReader::ReadDesign(ifstream& is) {
 			design.AddTrack(ReadTracks(is));
 			break;
 		case GCELLGRID:
-			cout << 1;
+			design.SetGCellGrid(ReadGCellGrid(is));
 			break;
 		case VIAS:
+			cout << 1;
 			break;
 		case COMPONENTS:
 			break;
@@ -194,4 +195,16 @@ const Track DefReader::ReadTracks(ifstream& is) {
 		is >> word;
 	} while (word != ";");
 	return track;
+}
+
+const CellGrid DefReader::ReadGCellGrid(ifstream& is)
+{
+	CellGrid gCellGrid;
+	int start, NumColumnsRows, space;
+	string word;
+	is >> word >> start >> word >> NumColumnsRows >> word >> space >> word; // X 0 DO 29 STEP 6900 ;
+	gCellGrid.setXParameters(start, NumColumnsRows, space);
+	is >> word >> word >> start >> word >> NumColumnsRows >> word >> space >> word; // GCELLGRID Y 0 DO 30 STEP 6900 ;
+	gCellGrid.setYParameters(start, NumColumnsRows, space);
+	return gCellGrid;
 }
