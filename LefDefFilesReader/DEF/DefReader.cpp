@@ -125,13 +125,13 @@ Design DefReader::ReadDesign(ifstream& is) {
 			}
 			break;
 		case ROW:
-			cout << "ktkt";
 			design.AddRow(ReadRow(is));
-			cout << "kek";
 			break;
 		case TRACKS:
+			design.AddTrack(ReadTracks(is));
 			break;
 		case GCELLGRID:
+			cout << 1;
 			break;
 		case VIAS:
 			break;
@@ -171,4 +171,27 @@ const Row DefReader::ReadRow(ifstream& is) {
 	is >> first >> second; //  stepX stepY
 	row.SetStep(first, second);
 	return row;
+}
+
+const Track DefReader::ReadTracks(ifstream& is) { 
+	Track track;
+	string word;
+	is >> word;
+	track.SetDirection(char(word[0]));
+	int value;
+	is >> value;
+	track.SetStart(value);
+	is >> word; // DO
+	is >> value;
+	track.SetNumTracks(value);
+	is >> word; // STEP
+	is >> value;
+	track.SetSpace(value);
+	is >> word; // LAYER
+	do {
+		is >> word;
+		track.AddLayer(word);
+		is >> word;
+	} while (word != ";");
+	return track;
 }

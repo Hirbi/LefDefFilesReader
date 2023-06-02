@@ -24,8 +24,8 @@ void Design::ClearDieArea() {
 	DieArea.clear();
 }
 
-void Design::AddRow(const Row& row) {
-	Rows.push_back(row);
+void Design::AddRow(const Row& value) {
+	Rows.push_back(value);
 }
 
 const vector<Row>& Design::GetRows() const
@@ -35,4 +35,17 @@ const vector<Row>& Design::GetRows() const
 
 void Design::ClearRows() {
 	Rows.clear();
+}
+
+void Design::AddTrack(const Track& value) {
+	Tracks.push_back(value);
+}
+
+const vector<Track>& Design::GetTrack() const
+{
+	return Tracks;
+}
+
+void Design::ClearTrack() {
+	Tracks.clear();
 }

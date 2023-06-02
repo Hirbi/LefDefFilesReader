@@ -1,6 +1,7 @@
 #pragma once
 
 #include "row/Row.h"
+#include "track/Track.h"
 #include "../../lib/containers/rect/Rect.h"
 
 #include <string>
@@ -14,6 +15,8 @@ class Design {
 	int Units;
 	vector <Rect> DieArea;
 	vector <Row> Rows;
+	vector <Track> Tracks;
+	GCellGrid GCellGrid;
 
 public:
 	Design(const int units = 0);
@@ -25,8 +28,12 @@ public:
 	const vector<Rect>& GetDieArea() const;
 	void ClearDieArea();
 
-	void AddRow(const Row& row);
+	void AddRow(const Row& value);
 	const vector <Row>& GetRows() const;
 	void ClearRows();
+
+	void AddTrack(const Track& value);
+	const vector <Track>& GetTrack() const;
+	void ClearTrack();
 };
 

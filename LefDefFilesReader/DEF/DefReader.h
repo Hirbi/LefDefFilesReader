@@ -2,6 +2,7 @@
 
 #include "Design/Design.h"
 #include "Design/row/Row.h"
+#include "Design/track/Track.h"
 #include "../objects/Objects.h"
 
 #include <fstream>
@@ -20,4 +21,6 @@ private:
 	Design ReadDesign(ifstream& is);
 
 	const Row ReadRow(ifstream& is);
+
+	const Track ReadTracks(ifstream& is);
 };
