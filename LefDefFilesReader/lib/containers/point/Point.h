@@ -2,17 +2,17 @@
 
 class Point {
 public:
-	double First;
-	double Second;
+	int First;
+	int Second;
 
-	Point(const double first = 0.0, const double second = 0.0);
+	Point(const int first = 0.0, const int second = 0.0);
 	Point(const Point& value);
 
-	void SetFirst(const double value);
-	void SetSecond(const double value);
+	void SetFirst(const int value);
+	void SetSecond(const int value);
 
-	double GetFirst(const double value) const;
-	double GetSecond(const double value) const;
+	int GetFirst(const int value) const;
+	int GetSecond(const int value) const;
 
 };
 

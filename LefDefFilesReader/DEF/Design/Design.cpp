@@ -12,7 +12,7 @@ int Design::GetUnits() const {
 	return Units;
 }
 
-void Design::AddDieArea(const Rect value) {
+void Design::AddDieArea(const Rect& value) {
 	DieArea.push_back(value);
 }
 
@@ -50,7 +50,7 @@ void Design::ClearTrack() {
 	Tracks.clear();
 }
 
-void Design::SetGCellGrid(CellGrid gCellGrid) {
+void Design::SetGCellGrid(const CellGrid& gCellGrid) {
 	GCellGrid = gCellGrid;
 }
 

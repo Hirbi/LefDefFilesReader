@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Design/Design.h"
-#include "Design/CellGrid/CellGrid.h"
+#include "Design/cell_grid/CellGrid.h"
 #include "Design/row/Row.h"
 #include "Design/track/Track.h"
 #include "../objects/Objects.h"

@@ -1,6 +1,6 @@
 #include "Point.h"
 
-Point::Point(const double first, const double second) :
+Point::Point(const int first, const int second) :
 	First(first), Second(second) {
 }
 
@@ -9,18 +9,18 @@ Point::Point(const Point& value) {
 	Second = value.Second;
 }
 
-void Point::SetFirst(const double value) {
+void Point::SetFirst(const int value) {
 	First = value;
 }
 
-void Point::SetSecond(const double value) {
+void Point::SetSecond(const int value) {
 	Second = value;
 }
 
-double Point::GetFirst(const double value) const {
+int Point::GetFirst(const int value) const {
 	return First;
 } 
 
-double Point::GetSecond(const double value) const {
+int Point::GetSecond(const int value) const {
 	return Second;
 }

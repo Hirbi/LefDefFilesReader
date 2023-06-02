@@ -134,7 +134,7 @@ Design DefReader::ReadDesign(ifstream& is) {
 			design.SetGCellGrid(ReadGCellGrid(is));
 			break;
 		case VIAS:
-			cout << 1;
+			return design; // TODO ÓÁÐÀÒÜ
 			break;
 		case COMPONENTS:
 			break;

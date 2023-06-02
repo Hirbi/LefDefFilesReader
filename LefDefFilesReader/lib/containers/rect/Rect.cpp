@@ -1,6 +1,6 @@
 #include "Rect.h"
 
-Rect::Rect(double firstX, double firstY, double secondX, double secondY) :
+Rect::Rect(int firstX, int firstY, int secondX, int secondY) :
 	First(firstX, firstY), Second(secondX, secondY) 
 {}
 
@@ -16,7 +16,7 @@ void Rect::SetFirst(const Point & value) {
 	First = value;
 }
 
-void Rect::SetFirst(const double first, const double second) {
+void Rect::SetFirst(const int first, const int second) {
 	First.First = first;
 	First.Second = second;
 }
@@ -25,7 +25,7 @@ void Rect::SetSecond(const Point& value) {
 	Second = value;
 }
 
-void Rect::SetSecond(const double first, const double second) {
+void Rect::SetSecond(const int first, const int second) {
 	Second.First = first;
 	Second.Second = second;
 }

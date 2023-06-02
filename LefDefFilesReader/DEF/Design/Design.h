@@ -1,12 +1,11 @@
 #pragma once
 
-#include "CellGrid/CellGrid.h"
+#include "cell_grid/CellGrid.h"
 #include "row/Row.h"
 #include "track/Track.h"
 #include "../../lib/containers/rect/Rect.h"
 
 #include <string>
-// #include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -25,7 +24,7 @@ public:
 	void SetUnits(const int value);
 	int GetUnits() const;
 
-	void AddDieArea(const Rect value);
+	void AddDieArea(const Rect& value);
 	const vector<Rect>& GetDieArea() const;
 	void ClearDieArea();
 
@@ -37,7 +36,7 @@ public:
 	const vector <Track>& GetTrack() const;
 	void ClearTrack();
 
-	void SetGCellGrid(CellGrid gCellGrid);
+	void SetGCellGrid(const CellGrid& gCellGrid);
 	const CellGrid& GetGCellGrid() const;
 };
 
