@@ -110,7 +110,7 @@ Design DefReader::ReadDesign(ifstream& is) {
 		case UNITS:
 			is >> word; is >> word; // <DISTANCE MICRONS>
 			is >> word;
-			design.Units = stoi(word);
+			design.SetUnits(stoi(word));
 			break;
 		case DIEAREA:
 			while (1) {
@@ -121,11 +121,13 @@ Design DefReader::ReadDesign(ifstream& is) {
 					>> word >> word // <) (>
 				    >> Second.First >> Second.Second
 					>> word; // <)>
-				design.DieArea.push_back(Rect(First, Second));
+				design.AddDieArea(Rect(First, Second));
 			}
-			cout << "hehe";
 			break;
 		case ROW:
+			cout << "ktkt";
+			design.AddRow(ReadRow(is));
+			cout << "kek";
 			break;
 		case TRACKS:
 			break;
@@ -146,4 +148,27 @@ Design DefReader::ReadDesign(ifstream& is) {
 		}
 	}
 	return design;
+}
+
+const Row DefReader::ReadRow(ifstream& is) {
+	Row row;
+	string word;
+	int first, second;
+	is >> word; // rowName
+	row.SetName(word);
+	is >> word; // siteName
+	row.SetSiteName(word);
+	is >> first >> second; // origX origY
+	row.SetOrig(first, second);
+	is >> word; // siteOrient
+	row.SetSiteOrient(word);
+	is >> word; // DO or ";"
+	if (word == ";") { return row; }
+	is >> first >> word >> second; // numX BY numY
+	row.SetNum(first, second);
+	is >> word; // STEP or ";"
+	if (word == ";") { return row; }
+	is >> first >> second; //  stepX stepY
+	row.SetStep(first, second);
+	return row;
 }

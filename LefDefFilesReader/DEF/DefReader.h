@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Design/Design.h"
+#include "Design/row/Row.h"
 #include "../objects/Objects.h"
 
-#include <string>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -17,4 +18,6 @@ public:
 
 private:
 	Design ReadDesign(ifstream& is);
+
+	const Row ReadRow(ifstream& is);
 };
