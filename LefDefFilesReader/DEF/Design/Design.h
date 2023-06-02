@@ -3,6 +3,7 @@
 #include "cell_grid/CellGrid.h"
 #include "row/Row.h"
 #include "track/Track.h"
+#include "via/Via.h"
 #include "../../lib/containers/rect/Rect.h"
 
 #include <string>
@@ -17,6 +18,7 @@ class Design {
 	vector <Row> Rows;
 	vector <Track> Tracks;
 	CellGrid GCellGrid;
+	vector <Via> Vias;
 
 public:
 	Design(const int units = 0);
@@ -38,5 +40,10 @@ public:
 
 	void SetGCellGrid(const CellGrid& gCellGrid);
 	const CellGrid& GetGCellGrid() const;
+
+	void SetVias(const vector<Via>& value);
+	void AddVia(const Via& via);
+	const vector <Via>& GetVia() const;
+	void ClearVia();
 };
 

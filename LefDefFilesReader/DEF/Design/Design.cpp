@@ -1,7 +1,6 @@
 #include "Design.h"
 
-Design::Design(const int units) :
-	Units(units) {
+Design::Design(const int units) {
 }
 
 void Design::SetUnits(const int value) {
@@ -56,4 +55,21 @@ void Design::SetGCellGrid(const CellGrid& gCellGrid) {
 
 const CellGrid& Design::GetGCellGrid() const {
 	return GCellGrid;
+}
+
+void Design::SetVias(const vector<Via>& value) {
+	Vias = value;
+}
+
+void Design::AddVia(const Via& via) {
+	Vias.push_back(via);
+}
+
+const vector<Via>& Design::GetVia() const
+{
+	return Vias;
+}
+
+void Design::ClearVia() {
+	Vias.clear();
 }

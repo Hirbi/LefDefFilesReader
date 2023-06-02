@@ -49,7 +49,10 @@ const Point& Via::GetCutSpacing() const {
 }
 
 void Via::SetEnclosure(const int xFirst, const int xSecond, const int yFirst, const int ySecond) {
-	Enclosure = Rect(xFirst, xSecond, yFirst, ySecond);
+	Enclosure.First.First = xFirst;
+	Enclosure.First.Second = xSecond;
+	Enclosure.Second.First = yFirst;
+	Enclosure.Second.Second = ySecond;
 }
 
 const Rect& Via::GetEnclosure() const {

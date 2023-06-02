@@ -1,5 +1,6 @@
 #pragma once
 #include "DefReader.h"
+#include "../lib/containers/rect/Rect.h"
 #include "../lib/functions/functions.h"
 
 #include <assert.h>
@@ -134,9 +135,10 @@ Design DefReader::ReadDesign(ifstream& is) {
 			design.SetGCellGrid(ReadGCellGrid(is));
 			break;
 		case VIAS:
-			return design; // TODO ”¡–¿“‹
+			design.SetVias(ReadVias(is));
 			break;
 		case COMPONENTS:
+			cout << 1;
 			break;
 		case PINS:
 			break;
@@ -208,3 +210,37 @@ const CellGrid DefReader::ReadGCellGrid(ifstream& is)
 	gCellGrid.setYParameters(start, NumColumnsRows, space);
 	return gCellGrid;
 }
+
+const vector<Via> DefReader::ReadVias(ifstream& is) {
+	string word, layer1, layer2, layer3;
+	int count;
+	is >> count >> word; // count ;
+	vector <Via> vias(count);
+	int value1, value2, value3, value4;
+	for (Via& via : vias) {
+		is >> word >> word; // - vianame
+		via.SetViaName(word);
+		is >> word >> word >> word; // + VIARULE viaRuleName
+		via.SetViaRule(word);
+		is >> word >> word >> value1 >> value2; // + CUTSIZE xSize ySize
+		via.SetCutSize(value1, value2);
+		is >> word >> word >> layer1 >> layer2 >> layer3; // + LAYERS botmetalLayer cutLayer topMetalLayer
+		via.SetViaLayers(layer1, layer2, layer3);
+		is >> word >> word >> value1 >> value2; // + CUTSPACING xCutSpacing yCutSpacing
+		via.SetCutSpacing(value1, value2);
+		is >> word >> word >> value1 >> value2 >> value3 >> value4; // + ENCLOSURE 90 60 100 65
+		via.SetEnclosure(value1, value2, value3, value4);
+		is >> word; // + or ;
+		if (word == ";") { continue; }
+		is >> word; // optional params
+		if (word == "ROWCOL") {
+			is >> value1 >> value2; // ROWCOL 1 4
+			via.SetRowCol(value1, value2);
+		}
+		is >> word;
+		if (word == ";") { continue; }
+	}
+	is >> word >> word; // END VIAS
+	return vias;
+}
+
