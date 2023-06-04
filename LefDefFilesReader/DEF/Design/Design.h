@@ -1,6 +1,7 @@
 #pragma once
 
 #include "cell_grid/CellGrid.h"
+#include "component/Component.h"
 #include "row/Row.h"
 #include "track/Track.h"
 #include "via/Via.h"
@@ -19,6 +20,7 @@ class Design {
 	vector <Track> Tracks;
 	CellGrid GCellGrid;
 	vector <Via> Vias;
+	vector <Component> Components;
 
 public:
 	Design(const int units = 0);
@@ -42,8 +44,13 @@ public:
 	const CellGrid& GetGCellGrid() const;
 
 	void SetVias(const vector<Via>& value);
-	void AddVia(const Via& via);
+	void AddVia(const Via& value);
 	const vector <Via>& GetVia() const;
 	void ClearVia();
+
+	void SetComponents(const vector<Component>& value);
+	void AddComponents(const Component& value);
+	const vector <Component>& GetComponents() const;
+	void ClearComponents();
 };
 

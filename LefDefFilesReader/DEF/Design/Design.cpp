@@ -27,8 +27,7 @@ void Design::AddRow(const Row& value) {
 	Rows.push_back(value);
 }
 
-const vector<Row>& Design::GetRows() const
-{
+const vector<Row>& Design::GetRows() const {
 	return Rows;
 }
 
@@ -40,8 +39,7 @@ void Design::AddTrack(const Track& value) {
 	Tracks.push_back(value);
 }
 
-const vector<Track>& Design::GetTrack() const
-{
+const vector<Track>& Design::GetTrack() const {
 	return Tracks;
 }
 
@@ -61,15 +59,30 @@ void Design::SetVias(const vector<Via>& value) {
 	Vias = value;
 }
 
-void Design::AddVia(const Via& via) {
-	Vias.push_back(via);
+void Design::AddVia(const Via& value) {
+	Vias.push_back(value);
 }
 
-const vector<Via>& Design::GetVia() const
-{
+const vector<Via>& Design::GetVia() const {
 	return Vias;
 }
 
 void Design::ClearVia() {
 	Vias.clear();
+}
+
+void Design::SetComponents(const vector<Component>& value) {
+	Components = value;
+}
+
+void Design::AddComponents(const Component& value) {
+	Components.push_back(value);
+}
+
+const vector<Component>& Design::GetComponents() const {
+	return Components;
+}
+
+void Design::ClearComponents() {
+	Components.clear();
 }

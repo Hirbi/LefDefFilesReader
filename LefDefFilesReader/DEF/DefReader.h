@@ -29,4 +29,8 @@ private:
 	const CellGrid ReadGCellGrid(ifstream& is);
 
 	const vector<Via> ReadVias(ifstream& is);
+
+	const vector<Component> ReadComponents(ifstream& is);
+
+
 };

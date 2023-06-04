@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
@@ -138,15 +139,19 @@ Design DefReader::ReadDesign(ifstream& is) {
 			design.SetVias(ReadVias(is));
 			break;
 		case COMPONENTS:
-			cout << 1;
+			design.SetComponents(ReadComponents(is));
 			break;
 		case PINS:
+			return design;
 			break;
 		case SPECIALNETS:
+			return design;
 			break;
 		case NETS:
+			return design;
 			break;
 		case END:
+			return design;
 			break;
 		}
 	}
@@ -240,7 +245,34 @@ const vector<Via> DefReader::ReadVias(ifstream& is) {
 		is >> word;
 		if (word == ";") { continue; }
 	}
-	is >> word >> word; // END VIAS
+	is >> word; // END
+	assert(word == "END");
+	is >> word; // VIAS
 	return vias;
 }
 
+const vector<Component> DefReader::ReadComponents(ifstream& is) {
+	string word, word2, wordSkip;
+	int count, value1, value2;
+	is >> count >> word; // count ;
+	vector<Component> components(count);
+	for (Component& component : components) {
+		is >> word >> word; // - compName
+		component.SetCompName(word);
+		is >> word; // modelName
+		component.SetModelName(word);
+		is >> word >> word; // + SOURCE or TYPE
+		if (word == "SOURCE") {
+			is >> word; // SOURCE
+			component.SetSource(word);
+			is >> word >> word; // + TYPE
+		} // if no -> word = TYPE
+		is >> wordSkip >> value1 >> value2 >> wordSkip >> word2; // ( 5520 10880 ) N ;
+		component.SetPlacement(word, Point(value1, value2), word2);
+		is >> word; // ;
+	}
+	is >> word;
+	assert(word == "END");
+	is >> word;
+	return components;
+}
