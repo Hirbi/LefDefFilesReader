@@ -2,6 +2,8 @@
 #include "DefReader.h"
 #include "../lib/containers/rect/Rect.h"
 #include "../lib/functions/functions.h"
+#include "../LEF/Macro/Pin/Pin.h"
+#include "../LEF/Macro/Pin/Port/Port.h"
 
 #include <assert.h>
 #include <iostream>
@@ -39,6 +41,7 @@ void DefReader::ReadData(const string& filename, Objects& objs) {
 		is >> word;
 		auto it = KEY_WORDS.find(word);
 		if (it == KEY_WORDS.end()) {
+			return;
 			cout << "Cant find word: " << word << "\n";
 			assert(0);
 		}
@@ -120,7 +123,7 @@ Design DefReader::ReadDesign(ifstream& is) {
 				if (word == ";") { break; }
 				Point First, Second;
 				is >> First.First >> First.Second
-					>> word >> word // <) (>
+					>> word >> word // here <) (>
 				    >> Second.First >> Second.Second
 					>> word; // <)>
 				design.AddDieArea(Rect(First, Second));
@@ -142,7 +145,7 @@ Design DefReader::ReadDesign(ifstream& is) {
 			design.SetComponents(ReadComponents(is));
 			break;
 		case PINS:
-			return design;
+			design.SetPins(ReadPins(is));
 			break;
 		case SPECIALNETS:
 			return design;
@@ -275,4 +278,118 @@ const vector<Component> DefReader::ReadComponents(ifstream& is) {
 	assert(word == "END");
 	is >> word;
 	return components;
+}
+
+const Port ReadOnePort(ifstream& is) {
+	string word, word2, wordSkip;
+	Port port;
+	static const int
+		LAYER = 1,
+		FIXED_PLACED = 2,
+		PLUS = -1;
+	static const unordered_map <string, int> KEY_PORT {
+		{ ";", 0},
+		{"LAYER", 1},
+		{"FIXED", 2},
+		{"PLACED", 2},
+		{"+", -1}
+	};
+	while (is >> word) {
+		//is >> word; 
+		auto it = KEY_PORT.find(word);
+		if (it == KEY_PORT.end()) {
+			cout << "Cant read Port in Def\n";
+			assert(0);
+		}
+		switch (it->second)
+		{
+		case PLUS:
+			continue;
+		case 0: // ;
+			return port;
+		case LAYER: {
+			Layer layer;
+			Rect rect;
+			is >> word;
+			layer.setName(word);
+			is >> word >> rect.First.First >> rect.First.Second >> word;
+			is >> word >> rect.Second.First >> rect.Second.Second >> word;
+			layer.addRect(rect);
+			port.addLayer(layer);
+			break;
+		}
+		case FIXED_PLACED: {
+			Point pt;
+			is >> wordSkip >> pt.First >> pt.Second >> wordSkip;
+			is >> word2;
+			port.SetPlacement(word, pt, word2);
+			break;
+		}
+		default:
+			break;
+		}
+	}
+	return port;
+}
+
+const vector<Pin> DefReader::ReadPins(ifstream& is) {
+	static const int
+		NET = 1,
+		SPECIAL = 2,
+		DIRECTION = 3,
+		USE = 4, 
+		PORT = 5,
+		PLUS = -1;
+	static const unordered_map <string, int> KEY_PIN{
+		{ ";", 0},
+		{"NET", 1},
+		{"SPECIAL", 2},
+		{"DIRECTION", 3},
+		{"USE", 4},
+		{"PORT", 5},
+		{"+", -1}
+	};
+	string word, word2, wordSkip;
+	int count;
+	is >> count >> word; //  < num ; >
+	vector <Pin> pins(count);
+	for (Pin& pin : pins) {
+		bool stop = false;
+		is >> word >> word;
+		pin.setName(word);
+		while (!stop) {
+			is >> word;
+			auto it = KEY_PIN.find(word);
+			if (it == KEY_PIN.end()) {
+				cout << "Cant read Pin in Def\n";
+				assert(0);
+			}
+			switch (it->second) {
+			case PLUS:
+				continue;
+				break;
+			case NET:
+				is >> word;
+				pin.setNet(word);
+				break;
+			case DIRECTION:
+				is >> word;
+				pin.setDirection(word);
+				break;
+			case USE:
+				is >> word;
+				pin.setUse(word);
+				break;
+			case SPECIAL:
+				pin.setSpecial(true);
+				break;
+			case PORT:
+				pin.addPort(ReadOnePort(is));
+				stop = true;
+				break;
+			}
+		}
+	}
+	is >> word >> word; // END PINS
+	return pins;
 }

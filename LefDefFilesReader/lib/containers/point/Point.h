@@ -15,4 +15,3 @@ public:
 	int GetSecond(const int value) const;
 
 };
-

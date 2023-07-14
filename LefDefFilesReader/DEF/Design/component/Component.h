@@ -1,18 +1,11 @@
 #pragma once
 
 #include "../../../lib/containers/point/Point.h"
+#include "../../objects/place_params/PlaceParams.h"
 
 #include <string>
 
 using namespace std;
-
-namespace {
-	struct PlaceParams {
-		string Type;
-		Point Pt;
-		string Orient;
-	};
-}
 
 class Component {
 	string CompName; 

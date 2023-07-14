@@ -32,5 +32,5 @@ private:
 
 	const vector<Component> ReadComponents(ifstream& is);
 
-
+	const vector<Pin> ReadPins(ifstream& is);
 };

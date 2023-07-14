@@ -6,6 +6,7 @@
 #include "track/Track.h"
 #include "via/Via.h"
 #include "../../lib/containers/rect/Rect.h"
+#include "../../LEF/Macro/Pin/Pin.h"
 
 #include <string>
 #include <vector>
@@ -21,6 +22,7 @@ class Design {
 	CellGrid GCellGrid;
 	vector <Via> Vias;
 	vector <Component> Components;
+	vector <Pin> Pins;
 
 public:
 	Design(const int units = 0);
@@ -49,8 +51,13 @@ public:
 	void ClearVia();
 
 	void SetComponents(const vector<Component>& value);
-	void AddComponents(const Component& value);
+	void AddComponent(const Component& value);
 	const vector <Component>& GetComponents() const;
 	void ClearComponents();
+
+	void SetPins(const vector<Pin>& value);
+	void AddPin(const Pin& value);
+	const vector <Pin>& GetPins() const;
+	void ClearPins();
 };
 

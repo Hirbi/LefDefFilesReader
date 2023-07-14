@@ -39,10 +39,10 @@
     <ClCompile Include="DEF\DefReader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="LEF\Pin\Port\Port.cpp">
+    <ClCompile Include="LEF\Macro\Pin\Port\Port.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="LEF\Pin\Pin.cpp">
+    <ClCompile Include="LEF\Macro\Pin\Pin.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="lib\containers\Layer\Layer.cpp">
@@ -68,6 +68,7 @@
     <None Include="data\lut_s44.def">
       <Filter>Исходные файлы</Filter>
     </None>
+    <None Include="data\merged_nom.lef" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DEF\Design\cell_grid\CellGrid.h">
@@ -91,10 +92,10 @@
     <ClInclude Include="DEF\DefReader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="LEF\Pin\Port\Port.h">
+    <ClInclude Include="LEF\Macro\Pin\Port\Port.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="LEF\Pin\Pin.h">
+    <ClInclude Include="LEF\Macro\Pin\Pin.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="lib\containers\Layer\Layer.h">
@@ -110,6 +111,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="objects\Objects.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\place_params\PlaceParams.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

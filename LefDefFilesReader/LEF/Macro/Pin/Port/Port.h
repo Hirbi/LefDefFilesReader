@@ -1,13 +1,16 @@
 #pragma once
 #include <unordered_map>
 #include <string>
+
+#include "../../../../objects/place_params/PlaceParams.h"
 #include "../../../../lib/containers/Layer/Layer.h"
 
+using namespace std;
 
 class Port
 {
 private:
-    std::unordered_map<std::string, Layer> layers;
+    std::vector <Layer> layers;
 	PlaceParams Placement;
 public:
     void addLayer(Layer layer);

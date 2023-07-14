@@ -75,7 +75,7 @@ void Design::SetComponents(const vector<Component>& value) {
 	Components = value;
 }
 
-void Design::AddComponents(const Component& value) {
+void Design::AddComponent(const Component& value) {
 	Components.push_back(value);
 }
 
@@ -85,4 +85,20 @@ const vector<Component>& Design::GetComponents() const {
 
 void Design::ClearComponents() {
 	Components.clear();
+}
+
+void Design::SetPins(const vector<Pin>& value) {
+	Pins = value;
+}
+
+void Design::AddPin(const Pin& value) {
+	Pins.push_back(value);
+}
+
+const vector<Pin>& Design::GetPins() const {
+	return Pins;
+}
+
+void Design::ClearPins() {
+	Pins.clear();
 }
