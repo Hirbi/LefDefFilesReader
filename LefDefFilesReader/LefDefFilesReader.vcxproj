@@ -127,10 +127,41 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DEF\DefReader.cpp" />
+    <ClCompile Include="DEF\Design\cell_grid\CellGrid.cpp" />
+    <ClCompile Include="DEF\Design\component\Component.cpp" />
+    <ClCompile Include="DEF\Design\Design.cpp" />
+    <ClCompile Include="DEF\Design\row\Row.cpp" />
+    <ClCompile Include="DEF\Design\track\Track.cpp" />
+    <ClCompile Include="DEF\Design\via\Via.cpp" />
+    <ClCompile Include="LEF\Pin\Pin.cpp" />
+    <ClCompile Include="LEF\Pin\Port\Port.cpp" />
+    <ClCompile Include="lib\containers\Layer\Layer.cpp" />
+    <ClCompile Include="lib\containers\point\Point.cpp" />
+    <ClCompile Include="lib\containers\rect\Rect.cpp" />
+    <ClCompile Include="lib\functions\functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="objects\Objects.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
+    <None Include="data\lut_s44.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DEF\DefReader.h" />
+    <ClInclude Include="DEF\Design\cell_grid\CellGrid.h" />
+    <ClInclude Include="DEF\Design\component\Component.h" />
+    <ClInclude Include="DEF\Design\Design.h" />
+    <ClInclude Include="DEF\Design\row\Row.h" />
+    <ClInclude Include="DEF\Design\track\Track.h" />
+    <ClInclude Include="DEF\Design\via\Via.h" />
+    <ClInclude Include="LEF\Pin\Pin.h" />
+    <ClInclude Include="LEF\Pin\Port\Port.h" />
+    <ClInclude Include="lib\containers\Layer\Layer.h" />
+    <ClInclude Include="lib\containers\point\Point.h" />
+    <ClInclude Include="lib\containers\rect\Rect.h" />
+    <ClInclude Include="lib\functions\functions.h" />
+    <ClInclude Include="objects\Objects.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
