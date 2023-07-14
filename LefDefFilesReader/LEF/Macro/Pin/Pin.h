@@ -11,12 +11,13 @@ private:
     std::string use;
     std::string shape;
     std::vector<Port> ports;
+    bool special;
 public:
     void addPort(Port port);
     void setDirection(std::string direction);
     void setUse(std::string use);
     void setShape(std::string shape);
-
+    void setSpecial(bool isIt);
     std::string getName();
 };
 

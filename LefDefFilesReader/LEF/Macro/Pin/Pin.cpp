@@ -20,6 +20,10 @@ void Pin::setShape(std::string shape)
     this->shape = shape;
 }
 
+void Pin::setSpecial(bool isIt) {
+    special = isIt;
+}
+
 std::string Pin::getName()
 {
     return this->name;
