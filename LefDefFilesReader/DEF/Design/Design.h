@@ -3,6 +3,7 @@
 #include "cell_grid/CellGrid.h"
 #include "component/Component.h"
 #include "row/Row.h"
+#include "specialnet/Specialnet.h"
 #include "track/Track.h"
 #include "via/Via.h"
 #include "../../lib/containers/rect/Rect.h"
@@ -23,7 +24,7 @@ class Design {
 	vector <Via> Vias;
 	vector <Component> Components;
 	vector <Pin> Pins;
-
+	vector <Specialnet> Specialnets;
 public:
 	Design(const int units = 0);
 
@@ -59,5 +60,10 @@ public:
 	void AddPin(const Pin& value);
 	const vector <Pin>& GetPins() const;
 	void ClearPins();
+
+	void SetSpecialnets(const vector<Specialnet>& value);
+	void AddSpecialnet(const Specialnet& value);
+	const vector <Specialnet>& GetSpecialnets() const;
+	void ClearSpecialnets();
 };
 

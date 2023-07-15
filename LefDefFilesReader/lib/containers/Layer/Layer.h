@@ -6,7 +6,7 @@
 // TODO: Change folder for Layer
 class Layer
 {
-private:
+protected:
     std::string name;
     std::vector<Rect> rects;
 public:

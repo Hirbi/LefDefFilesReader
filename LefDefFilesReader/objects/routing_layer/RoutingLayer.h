@@ -10,6 +10,7 @@ class RoutingLayer : public Layer {
 	int RouteWidth;
 	string Shape;
 	vector <Point> RoutingPoints;
+	string ViaLayer;
 
 public:
 	void SetRouteWidth(const int value);
@@ -20,5 +21,8 @@ public:
 
 	void AddRoutingPoint(const Point& pt);
 	const vector <Point>& GetRoutingPoints() const;
+
+	void SetViaLayer(const string& value);
+	const string& GetViaLayer() const;
 };
 

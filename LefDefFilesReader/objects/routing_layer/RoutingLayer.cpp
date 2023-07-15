@@ -23,3 +23,11 @@ void RoutingLayer::AddRoutingPoint(const Point& pt) {
 const vector<Point>& RoutingLayer::GetRoutingPoints() const {
     return RoutingPoints;
 }
+
+void RoutingLayer::SetViaLayer(const string& value) {
+    ViaLayer = value;
+}
+
+const string& RoutingLayer::GetViaLayer() const {
+    return ViaLayer;
+}

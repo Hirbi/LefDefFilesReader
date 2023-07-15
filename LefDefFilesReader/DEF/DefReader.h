@@ -3,6 +3,7 @@
 #include "Design/Design.h"
 #include "Design/cell_grid/CellGrid.h"
 #include "Design/row/Row.h"
+#include "Design/specialnet/Specialnet.h"
 #include "Design/track/Track.h"
 #include "Design/via/Via.h"
 #include "../objects/Objects.h"
@@ -33,4 +34,6 @@ private:
 	const vector<Component> ReadComponents(ifstream& is);
 
 	const vector<Pin> ReadPins(ifstream& is);
+
+	const vector<Specialnet> ReadSpecialnets(ifstream& is);
 };

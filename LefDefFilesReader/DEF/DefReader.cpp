@@ -148,6 +148,7 @@ Design DefReader::ReadDesign(ifstream& is) {
 			design.SetPins(ReadPins(is));
 			break;
 		case SPECIALNETS:
+			design.SetSpecialnets(ReadSpecialnets(is));
 			return design;
 			break;
 		case NETS:
@@ -392,4 +393,154 @@ const vector<Pin> DefReader::ReadPins(ifstream& is) {
 	}
 	is >> word >> word; // END PINS
 	return pins;
+}
+
+const vector<RoutingLayer> ReadRoutingLayers(ifstream& is) {
+	vector<RoutingLayer> layers;
+	static const int
+		BRACKET = 1,
+		SHAPE = 2,
+		NEW = 3,
+		PLUS = -1,
+		LAYER_VIA = 4;
+	static const unordered_map <string, int> KEY_PIN{
+		{ ";", 0},
+		{"(", 1},
+		{"SHAPE", 2},
+		{"NEW", 3},
+		{"+", -1}
+	};
+	string word;
+	int num;
+	while (is >> word) {
+		RoutingLayer rLayer;
+		rLayer.setName(word);
+		is >> num;
+		rLayer.SetRouteWidth(num);
+		bool stop = false;
+		while (!stop) {
+			is >> word;
+			auto it = KEY_PIN.find(word);
+			if (it == KEY_PIN.end()) {
+				if (word.substr(0, 3) == "via") {
+					num = 4;
+				} else {
+					cout << "Cant read RoutingLayers in Def\n";
+					assert(0);
+				}	
+			} else {
+				num = it->second;
+			}
+			switch (num) {
+			case 0: // 0 == ;
+				layers.push_back(rLayer);
+				return layers;
+			case NEW:
+				stop = true;
+				break;
+			case PLUS:
+				continue;
+				break;
+			case SHAPE:
+				is >> word;
+				rLayer.SetShape(word);
+				break;
+			case BRACKET: {
+				Point pt;
+				is >> pt.First >> pt.Second >> word;
+				rLayer.AddRoutingPoint(pt);
+				break;
+			}
+			case LAYER_VIA:
+				rLayer.SetViaLayer(word);
+				break;
+			}
+		}
+		layers.push_back(rLayer);
+	}
+	return layers;
+}
+
+const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
+	static const int
+		BRACKET = 1,
+		USE = 2,
+		ROUTED = 3,
+		SHAPE = 4,
+		NEW = 5,
+		PLUS = -1;
+	static const unordered_map <string, int> KEY_PIN{
+		{ ";", 0},
+		{"(", 1},
+		{"USE", 2},
+		{"ROUTED", 3},
+		{"SHAPE", 4},
+		{"NEW", 5},
+		{"+", -1}
+	};
+	int count, num;
+	string word, word2;
+	is >> count >> word;
+	vector <Specialnet> specialnets(count);
+	// use routed shape
+	for (Specialnet& specNet : specialnets) {
+		is >> word >> word;
+		specNet.SetName(word);
+		bool stop = false, isRoutePoints = false;
+		auto specialWiring = specNet.MutableSpecialWiring();
+		while (!stop) {
+			is >> word;
+			auto it = KEY_PIN.find(word);
+			if (it == KEY_PIN.end()) {
+				cout << "Cant read Specialnet in Def\n";
+				assert(0);
+			}
+			switch (it->second) {
+			case PLUS:
+				continue;
+				break;
+			case BRACKET:
+				if (!isRoutePoints) {
+					is >> word;
+					if (word == "PIN") {
+						is >> word;
+						specNet.AddPinName(word);
+					}
+					else {
+						is >> word2;
+						specNet.AddCompPatternPinName(word, word2);
+					}
+					is >> word;
+				} else {
+					Point pt;
+					is >> pt.First >> pt.Second >> word;
+					specialWiring->AddRoutingPoint(pt);
+				}
+				break;
+			case USE:
+				is >> word;
+				specNet.SetUse(word);
+				break;
+			case ROUTED:
+				specialWiring->SetWiringType(word);
+				is >> word;
+				specialWiring->SetRouteLayerName(word);
+				is >> num;
+				specialWiring->SetRouteWidth(num);
+				isRoutePoints = true;
+				break;
+			case SHAPE:
+				is >> word;
+				specialWiring->SetShape(word);
+				isRoutePoints = true;
+				break;
+			case NEW:
+				specialWiring->SetNewLayers(ReadRoutingLayers(is));
+				stop = true;
+				break;
+			}
+		}
+	}
+	is >> word >> word2;
+	return specialnets;
 }

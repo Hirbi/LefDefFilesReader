@@ -102,3 +102,19 @@ const vector<Pin>& Design::GetPins() const {
 void Design::ClearPins() {
 	Pins.clear();
 }
+
+void Design::SetSpecialnets(const vector<Specialnet>& value) {
+	Specialnets = value;
+}
+
+void Design::AddSpecialnet(const Specialnet& value) {
+	Specialnets.push_back(value);
+}
+
+const vector<Specialnet>& Design::GetSpecialnets() const {
+	return Specialnets;
+}
+
+void Design::ClearSpecialnets() {
+	Specialnets.clear();
+}
