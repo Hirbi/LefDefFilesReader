@@ -118,3 +118,19 @@ const vector<Specialnet>& Design::GetSpecialnets() const {
 void Design::ClearSpecialnets() {
 	Specialnets.clear();
 }
+
+void Design::SetNets(const vector<Net>& value) {
+	Nets = value;
+}
+
+void Design::AddNets(const Net& value) {
+	Nets.push_back(value);
+}
+
+const vector<Net>& Design::GetNets() const {
+	return Nets;
+}
+
+void Design::ClearNets() {
+	Nets.clear();
+}

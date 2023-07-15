@@ -2,6 +2,7 @@
 
 #include "Design/Design.h"
 #include "Design/cell_grid/CellGrid.h"
+#include "Design/net/Net.h"
 #include "Design/row/Row.h"
 #include "Design/specialnet/Specialnet.h"
 #include "Design/track/Track.h"
@@ -36,4 +37,7 @@ private:
 	const vector<Pin> ReadPins(ifstream& is);
 
 	const vector<Specialnet> ReadSpecialnets(ifstream& is);
+
+	const vector<Net> ReadNets(ifstream& is);
+
 };

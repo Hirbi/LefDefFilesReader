@@ -141,6 +141,7 @@
     <ClCompile Include="lib\containers\rect\Rect.cpp" />
     <ClCompile Include="lib\functions\functions.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="DEF\Design\net\Net.cpp" />
     <ClCompile Include="objects\Objects.cpp" />
     <ClCompile Include="DEF\Design\specialnet\Specialnet.cpp" />
     <ClCompile Include="objects\routing_layer\RoutingLayer.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="lib\containers\point\Point.h" />
     <ClInclude Include="lib\containers\rect\Rect.h" />
     <ClInclude Include="lib\functions\functions.h" />
+    <ClInclude Include="DEF\Design\net\Net.h" />
     <ClInclude Include="objects\Objects.h" />
     <ClInclude Include="objects\place_params\PlaceParams.h" />
     <ClInclude Include="DEF\Design\specialnet\Specialnet.h" />

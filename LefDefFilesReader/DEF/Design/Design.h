@@ -2,6 +2,7 @@
 
 #include "cell_grid/CellGrid.h"
 #include "component/Component.h"
+#include "net/Net.h"
 #include "row/Row.h"
 #include "specialnet/Specialnet.h"
 #include "track/Track.h"
@@ -25,6 +26,7 @@ class Design {
 	vector <Component> Components;
 	vector <Pin> Pins;
 	vector <Specialnet> Specialnets;
+	vector <Net> Nets;
 public:
 	Design(const int units = 0);
 
@@ -65,5 +67,10 @@ public:
 	void AddSpecialnet(const Specialnet& value);
 	const vector <Specialnet>& GetSpecialnets() const;
 	void ClearSpecialnets();
+
+	void SetNets(const vector<Net>& value);
+	void AddNets(const Net& value);
+	const vector <Net>& GetNets() const;
+	void ClearNets();
 };
 

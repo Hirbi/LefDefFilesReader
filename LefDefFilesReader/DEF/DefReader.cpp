@@ -149,12 +149,15 @@ Design DefReader::ReadDesign(ifstream& is) {
 			break;
 		case SPECIALNETS:
 			design.SetSpecialnets(ReadSpecialnets(is));
-			return design;
 			break;
 		case NETS:
-			return design;
+			design.SetNets(ReadNets(is));
 			break;
 		case END:
+			is >> word;
+			if (word != "DESIGN") {
+				assert(0);
+			}
 			return design;
 			break;
 		}
@@ -469,7 +472,7 @@ const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
 		SHAPE = 4,
 		NEW = 5,
 		PLUS = -1;
-	static const unordered_map <string, int> KEY_PIN{
+	static const unordered_map <string, int> KEY_SPECIALNET{
 		{ ";", 0},
 		{"(", 1},
 		{"USE", 2},
@@ -490,8 +493,8 @@ const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
 		auto specialWiring = specNet.MutableSpecialWiring();
 		while (!stop) {
 			is >> word;
-			auto it = KEY_PIN.find(word);
-			if (it == KEY_PIN.end()) {
+			auto it = KEY_SPECIALNET.find(word);
+			if (it == KEY_SPECIALNET.end()) {
 				cout << "Cant read Specialnet in Def\n";
 				assert(0);
 			}
@@ -543,4 +546,54 @@ const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
 	}
 	is >> word >> word2;
 	return specialnets;
+}
+
+const vector<Net> DefReader::ReadNets(ifstream& is)
+{
+	static const int
+		BRACKET = 1,
+		USE = 2,
+		PLUS = -1;
+	static const unordered_map <string, int> KEY_NET{
+		{ ";", 0},
+		{"(", 1},
+		{"USE", 2},
+		{"+", -1}
+	};
+	int count, num;
+	string word, word2;
+	is >> count >> word;
+	vector<Net> nets(count);
+	for (Net& net : nets) {
+		is >> word >> word;
+		net.SetName(word);
+		bool stop = false;
+		while (!stop) {
+			is >> word;
+			auto it = KEY_NET.find(word);
+			if (it == KEY_NET.end()) {
+				cout << "Cant read Net in Def\n";
+				assert(0);
+			}
+			switch (it->second) {
+			case 0: // ;
+				stop = true;
+				break;
+			case PLUS:
+				continue;
+				break;
+			case USE:
+				is >> word;
+				net.SetUse(word);
+				break;
+			case BRACKET:
+				is >> word >> word2;
+				net.AddCompPinName(word, word2);
+				is >> word;
+				break;
+			}
+		}
+	}
+	is >> word >> word2;
+	return nets;
 }
