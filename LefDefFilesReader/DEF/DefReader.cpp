@@ -490,7 +490,6 @@ const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
 		is >> word >> word;
 		specNet.SetName(word);
 		bool stop = false, isRoutePoints = false;
-		auto specialWiring = specNet.MutableSpecialWiring();
 		while (!stop) {
 			is >> word;
 			auto it = KEY_SPECIALNET.find(word);
@@ -504,20 +503,13 @@ const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
 				break;
 			case BRACKET:
 				if (!isRoutePoints) {
-					is >> word;
-					if (word == "PIN") {
-						is >> word;
-						specNet.AddPinName(word);
-					}
-					else {
-						is >> word2;
-						specNet.AddCompPatternPinName(word, word2);
-					}
+					is >> word >> word2;
+					specNet.AddCompPinName(word, word2);
 					is >> word;
 				} else {
 					Point pt;
 					is >> pt.First >> pt.Second >> word;
-					specialWiring->AddRoutingPoint(pt);
+					specNet.AddRoutingPoint(pt);
 				}
 				break;
 			case USE:
@@ -525,20 +517,20 @@ const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
 				specNet.SetUse(word);
 				break;
 			case ROUTED:
-				specialWiring->SetWiringType(word);
+				specNet.SetWiringType(word);
 				is >> word;
-				specialWiring->SetRouteLayerName(word);
+				specNet.SetRouteLayerName(word);
 				is >> num;
-				specialWiring->SetRouteWidth(num);
+				specNet.SetRouteWidth(num);
 				isRoutePoints = true;
 				break;
 			case SHAPE:
 				is >> word;
-				specialWiring->SetShape(word);
+				specNet.SetShape(word);
 				isRoutePoints = true;
 				break;
 			case NEW:
-				specialWiring->SetNewLayers(ReadRoutingLayers(is));
+				specNet.SetNewLayers(ReadRoutingLayers(is));
 				stop = true;
 				break;
 			}
