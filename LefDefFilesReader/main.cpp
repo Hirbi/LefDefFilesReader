@@ -12,6 +12,7 @@ using namespace std;
 int main() {
 	Objects objs;
 	const string defFile = "data/lut_s44.def";
+	const string defFile2 = "data/test2.def";
 	DefReader defReader;
 	
 	unsigned int start_time = clock();

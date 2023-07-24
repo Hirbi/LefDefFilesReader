@@ -78,6 +78,9 @@
       <Filter>Исходные файлы</Filter>
     </None>
     <None Include="data\merged_nom.lef" />
+    <None Include="data\test2.def">
+      <Filter>Исходные файлы</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DEF\Design\cell_grid\CellGrid.h">

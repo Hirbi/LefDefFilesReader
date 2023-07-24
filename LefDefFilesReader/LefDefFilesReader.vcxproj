@@ -150,6 +150,7 @@
     <None Include="..\.gitignore" />
     <None Include="data\lut_s44.def" />
     <None Include="data\merged_nom.lef" />
+    <None Include="data\test2.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DEF\DefReader.h" />
