@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../DEF/Design/Design.h"
+#include "../DEF/def_types.h"
 
 #include <string>
 #include <unordered_map>
@@ -8,6 +8,7 @@
 using namespace std;
 
 class Objects {
+
 	unordered_map <string, Design> Designs;
 
 public:

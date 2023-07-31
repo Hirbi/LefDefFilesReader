@@ -1,9 +1,8 @@
 #pragma once
 #include "DefReader.h"
-#include "../lib/containers/rect/Rect.h"
+#include "def_types.h"
 #include "../lib/functions/functions.h"
-#include "../LEF/Macro/Pin/Pin.h"
-#include "../LEF/Macro/Pin/Port/Port.h"
+#include "../LEF/lef_files.h"
 
 #include <assert.h>
 #include <iostream>
@@ -13,7 +12,6 @@
 #include <vector>
 
 using namespace std;
-
 
 
 void DefReader::ReadData(const string& filename, Objects& objs) {
@@ -115,7 +113,7 @@ Design DefReader::ReadDesign(ifstream& is) {
 		case UNITS:
 			is >> word; is >> word; // <DISTANCE MICRONS>
 			is >> word;
-			design.SetUnits(stoi(word));
+			design.Units = stoi(word);
 			break;
 		case DIEAREA:
 			while (1) {
@@ -126,32 +124,32 @@ Design DefReader::ReadDesign(ifstream& is) {
 					>> word >> word // here <) (>
 				    >> Second.First >> Second.Second
 					>> word; // <)>
-				design.AddDieArea(Rect(First, Second));
+				design.DieArea.push_back(Rect(First, Second));
 			}
 			break;
 		case ROW:
-			design.AddRow(ReadRow(is));
+			design.Rows.push_back(ReadRow(is));
 			break;
 		case TRACKS:
-			design.AddTrack(ReadTracks(is));
+			design.Tracks.push_back(ReadTracks(is));
 			break;
 		case GCELLGRID:
-			design.SetGCellGrid(ReadGCellGrid(is));
+			ReadGCellGrid(is, design.GCellGrid);
 			break;
 		case VIAS:
-			design.SetVias(ReadVias(is));
+			ReadVias(is, design.Vias);
 			break;
 		case COMPONENTS:
-			design.SetComponents(ReadComponents(is));
+			ReadComponents(is, design.Components);
 			break;
 		case PINS:
-			design.SetPins(ReadPins(is));
+			ReadPins(is, design.Pins);
 			break;
 		case SPECIALNETS:
-			design.SetSpecialnets(ReadSpecialnets(is));
+			ReadSpecialnets(is, design.Specialnets);
 			break;
 		case NETS:
-			design.SetNets(ReadNets(is));
+			ReadNets(is, design.Nets);
 			break;
 		case END:
 			is >> word;
@@ -168,86 +166,60 @@ Design DefReader::ReadDesign(ifstream& is) {
 const Row DefReader::ReadRow(ifstream& is) {
 	Row row;
 	string word;
-	int first, second;
-	is >> word; // rowName
-	row.SetName(word);
-	is >> word; // siteName
-	row.SetSiteName(word);
-	is >> first >> second; // origX origY
-	row.SetOrig(first, second);
-	is >> word; // siteOrient
-	row.SetSiteOrient(word);
+	is >> row.Name; // rowName
+	is >> row.SiteName; // siteName
+	is >> row.Orig.First >> row.Orig.Second; // origX origY
+	is >> row.SiteOrient; // siteOrient
 	is >> word; // DO or ";"
 	if (word == ";") { return row; }
-	is >> first >> word >> second; // numX BY numY
-	row.SetNum(first, second);
+	is >> row.Num.First >> word >> row.Num.Second; // numX BY numY
 	is >> word; // STEP or ";"
 	if (word == ";") { return row; }
-	is >> first >> second; //  stepX stepY
-	row.SetStep(first, second);
+	is >> row.Step.First >> row.Step.Second; //  stepX stepY
 	return row;
 }
 
 const Track DefReader::ReadTracks(ifstream& is) { 
 	Track track;
 	string word;
-	is >> word;
-	track.SetDirection(char(word[0]));
-	int value;
-	is >> value;
-	track.SetStart(value);
+	is >> track.Direction;
+	is >> track.Start;
 	is >> word; // DO
-	is >> value;
-	track.SetNumTracks(value);
+	is >> track.NumTracks;
 	is >> word; // STEP
-	is >> value;
-	track.SetSpace(value);
+	is >> track.Space;
 	is >> word; // LAYER
 	do {
 		is >> word;
-		track.AddLayer(word);
+		track.Layers.push_back(word);
 		is >> word;
 	} while (word != ";");
 	return track;
 }
 
-const CellGrid DefReader::ReadGCellGrid(ifstream& is)
-{
-	CellGrid gCellGrid;
-	int start, NumColumnsRows, space;
+void DefReader::ReadGCellGrid(ifstream& is, CellGrid& gCellGrid) {
 	string word;
-	is >> word >> start >> word >> NumColumnsRows >> word >> space >> word; // X 0 DO 29 STEP 6900 ;
-	gCellGrid.setXParameters(start, NumColumnsRows, space);
-	is >> word >> word >> start >> word >> NumColumnsRows >> word >> space >> word; // GCELLGRID Y 0 DO 30 STEP 6900 ;
-	gCellGrid.setYParameters(start, NumColumnsRows, space);
-	return gCellGrid;
+	is >> word >> gCellGrid.X.Start >> word >> gCellGrid.X.NumColumnsRows >> word >> gCellGrid.X.Space >> word; // X 0 DO 29 STEP 6900 ;
+	is >> word >> word >> gCellGrid.Y.Start >> word >> gCellGrid.Y.NumColumnsRows >> word >> gCellGrid.Y.Space >> word; // GCELLGRID Y 0 DO 30 STEP 6900 ;
 }
 
-const vector<Via> DefReader::ReadVias(ifstream& is) {
+void DefReader::ReadVias(ifstream& is, vector <Via>& vias) {
 	string word, layer1, layer2, layer3;
 	int count;
 	is >> count >> word; // count ;
-	vector <Via> vias(count);
-	int value1, value2, value3, value4;
+	vias.resize(count);
 	for (Via& via : vias) {
-		is >> word >> word; // - vianame
-		via.SetViaName(word);
-		is >> word >> word >> word; // + VIARULE viaRuleName
-		via.SetViaRule(word);
-		is >> word >> word >> value1 >> value2; // + CUTSIZE xSize ySize
-		via.SetCutSize(value1, value2);
-		is >> word >> word >> layer1 >> layer2 >> layer3; // + LAYERS botmetalLayer cutLayer topMetalLayer
-		via.SetViaLayers(layer1, layer2, layer3);
-		is >> word >> word >> value1 >> value2; // + CUTSPACING xCutSpacing yCutSpacing
-		via.SetCutSpacing(value1, value2);
-		is >> word >> word >> value1 >> value2 >> value3 >> value4; // + ENCLOSURE 90 60 100 65
-		via.SetEnclosure(value1, value2, value3, value4);
+		is >> word >> via.ViaName; // - vianame
+		is >> word >> word >> via.ViaRule; // + VIARULE viaRuleName
+		is >> word >> word >> via.CutSize.First >> via.CutSize.Second; // + CUTSIZE xSize ySize
+		is >> word >> word >> via.ViaLayers.BotMetalLayer >> via.ViaLayers.CutLayer >> via.ViaLayers.TopMetalLayer; // + LAYERS botmetalLayer cutLayer topMetalLayer
+		is >> word >> word >> via.CutSpacing.First >> via.CutSpacing.Second; // + CUTSPACING xCutSpacing yCutSpacing
+		is >> word >> word >> via.Enclosure.First.First >> via.Enclosure.First.Second >> via.Enclosure.Second.First >> via.Enclosure.Second.Second; // + ENCLOSURE 90 60 100 65
 		is >> word; // + or ;
 		if (word == ";") { continue; }
 		is >> word; // optional params
 		if (word == "ROWCOL") {
-			is >> value1 >> value2; // ROWCOL 1 4
-			via.SetRowCol(value1, value2);
+			is >> via.RowCol.First >> via.RowCol.Second; // ROWCOL 1 4
 		}
 		is >> word;
 		if (word == ";") { continue; }
@@ -255,33 +227,27 @@ const vector<Via> DefReader::ReadVias(ifstream& is) {
 	is >> word; // END
 	assert(word == "END");
 	is >> word; // VIAS
-	return vias;
 }
 
-const vector<Component> DefReader::ReadComponents(ifstream& is) {
+void DefReader::ReadComponents(ifstream& is, vector<Component>& components) {
 	string word, word2, wordSkip;
-	int count, value1, value2;
+	int count;
 	is >> count >> word; // count ;
-	vector<Component> components(count);
+	components.resize(count);
 	for (Component& component : components) {
-		is >> word >> word; // - compName
-		component.SetCompName(word);
-		is >> word; // modelName
-		component.SetModelName(word);
+		is >> word >> component.CompName; // - compName
+		is >> component.ModelName; // modelName
 		is >> word >> word; // + SOURCE or TYPE
 		if (word == "SOURCE") {
-			is >> word; // SOURCE
-			component.SetSource(word);
-			is >> word >> word; // + TYPE
+			is >> component.Source; // SOURCE
+			is >> word >> component.Placement.Type; // + TYPE
 		} // if no -> word = TYPE
-		is >> wordSkip >> value1 >> value2 >> wordSkip >> word2; // ( 5520 10880 ) N ;
-		component.SetPlacement(word, Point(value1, value2), word2);
+		is >> wordSkip >> component.Placement.Pt.First >> component.Placement.Pt.Second >> wordSkip >> component.Placement.Orient; // ( 5520 10880 ) N ;
 		is >> word; // ;
 	}
 	is >> word;
 	assert(word == "END");
 	is >> word;
-	return components;
 }
 
 const Port ReadOnePort(ifstream& is) {
@@ -314,19 +280,18 @@ const Port ReadOnePort(ifstream& is) {
 		case LAYER: {
 			Layer layer;
 			Rect rect;
-			is >> word;
-			layer.setName(word);
+			is >> layer.Name;
 			is >> word >> rect.First.First >> rect.First.Second >> word;
 			is >> word >> rect.Second.First >> rect.Second.Second >> word;
-			layer.addRect(rect);
-			port.addLayer(layer);
+			layer.Rects.push_back(rect);
+			port.Layers.push_back(layer);
 			break;
 		}
 		case FIXED_PLACED: {
+			port.Placement.Type = word;
 			Point pt;
-			is >> wordSkip >> pt.First >> pt.Second >> wordSkip;
-			is >> word2;
-			port.SetPlacement(word, pt, word2);
+			is >> wordSkip >> port.Placement.Pt.First >> port.Placement.Pt.Second >> wordSkip;
+			is >> port.Placement.Orient;
 			break;
 		}
 		default:
@@ -336,7 +301,7 @@ const Port ReadOnePort(ifstream& is) {
 	return port;
 }
 
-const vector<Pin> DefReader::ReadPins(ifstream& is) {
+void DefReader::ReadPins(ifstream& is, vector <Pin>& pins) {
 	static const int
 		NET = 1,
 		SPECIAL = 2,
@@ -356,11 +321,10 @@ const vector<Pin> DefReader::ReadPins(ifstream& is) {
 	string word, word2, wordSkip;
 	int count;
 	is >> count >> word; //  < num ; >
-	vector <Pin> pins(count);
+	pins.resize(count);
 	for (Pin& pin : pins) {
 		bool stop = false;
-		is >> word >> word;
-		pin.setName(word);
+		is >> word >> pin.Name;
 		while (!stop) {
 			is >> word;
 			auto it = KEY_PIN.find(word);
@@ -373,29 +337,25 @@ const vector<Pin> DefReader::ReadPins(ifstream& is) {
 				continue;
 				break;
 			case NET:
-				is >> word;
-				pin.setNet(word);
+				is >> pin.Net;
 				break;
 			case DIRECTION:
-				is >> word;
-				pin.setDirection(word);
+				is >> pin.Direction;
 				break;
 			case USE:
-				is >> word;
-				pin.setUse(word);
+				is >> pin.Use;
 				break;
 			case SPECIAL:
-				pin.setSpecial(true);
+				pin.Special = true;
 				break;
 			case PORT:
-				pin.addPort(ReadOnePort(is));
+				pin.Ports.push_back(ReadOnePort(is));
 				stop = true;
 				break;
 			}
 		}
 	}
 	is >> word >> word; // END PINS
-	return pins;
 }
 
 const vector<RoutingLayer> ReadRoutingLayers(ifstream& is) {
@@ -417,9 +377,8 @@ const vector<RoutingLayer> ReadRoutingLayers(ifstream& is) {
 	int num;
 	while (is >> word) {
 		RoutingLayer rLayer;
-		rLayer.setName(word);
-		is >> num;
-		rLayer.SetRouteWidth(num);
+		rLayer.Name = word;
+		is >> rLayer.RouteWidth;
 		bool stop = false;
 		while (!stop) {
 			is >> word;
@@ -445,17 +404,16 @@ const vector<RoutingLayer> ReadRoutingLayers(ifstream& is) {
 				continue;
 				break;
 			case SHAPE:
-				is >> word;
-				rLayer.SetShape(word);
+				is >> rLayer.Shape;
 				break;
 			case BRACKET: {
 				Point pt;
 				is >> pt.First >> pt.Second >> word;
-				rLayer.AddRoutingPoint(pt);
+				rLayer.RoutingPoints.push_back(pt);
 				break;
 			}
 			case LAYER_VIA:
-				rLayer.SetViaLayer(word);
+				rLayer.ViaLayer = word;
 				break;
 			}
 		}
@@ -464,7 +422,7 @@ const vector<RoutingLayer> ReadRoutingLayers(ifstream& is) {
 	return layers;
 }
 
-const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
+void DefReader::ReadSpecialnets(ifstream& is, vector <Specialnet>& specialnets) {
 	static const int
 		BRACKET = 1,
 		USE = 2,
@@ -481,14 +439,13 @@ const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
 		{"NEW", 5},
 		{"+", -1}
 	};
-	int count, num;
+	int count;
 	string word, word2;
 	is >> count >> word;
-	vector <Specialnet> specialnets(count);
+	specialnets.resize(count);
 	// use routed shape
 	for (Specialnet& specNet : specialnets) {
-		is >> word >> word;
-		specNet.SetName(word);
+		is >> word >> specNet.Name;
 		bool stop = false, isRoutePoints = false;
 		while (!stop) {
 			is >> word;
@@ -503,45 +460,40 @@ const vector<Specialnet> DefReader::ReadSpecialnets(ifstream& is) {
 				break;
 			case BRACKET:
 				if (!isRoutePoints) {
-					is >> word >> word2;
-					specNet.AddCompPinName(word, word2);
+					StringPair strPr;
+					is >> strPr.First >> strPr.Second;
+					specNet.CompPinNames.push_back(strPr);
 					is >> word;
 				} else {
 					Point pt;
 					is >> pt.First >> pt.Second >> word;
-					specNet.AddRoutingPoint(pt);
+					specNet.RoutingPoints.push_back(pt);
 				}
 				break;
 			case USE:
-				is >> word;
-				specNet.SetUse(word);
+				is >> specNet.Use;
 				break;
 			case ROUTED:
-				specNet.SetWiringType(word);
-				is >> word;
-				specNet.SetRouteLayerName(word);
-				is >> num;
-				specNet.SetRouteWidth(num);
+				specNet.WiringType = word;
+				is >> specNet.RouteLayerName;
+				is >> specNet.RouteWidth;
 				isRoutePoints = true;
 				break;
 			case SHAPE:
-				is >> word;
-				specNet.SetShape(word);
+				is >> specNet.Shape;
 				isRoutePoints = true;
 				break;
 			case NEW:
-				specNet.SetNewLayers(ReadRoutingLayers(is));
+				specNet.RoutingLayers = ReadRoutingLayers(is);
 				stop = true;
 				break;
 			}
 		}
 	}
 	is >> word >> word2;
-	return specialnets;
 }
 
-const vector<Net> DefReader::ReadNets(ifstream& is)
-{
+void DefReader::ReadNets(ifstream& is, vector<Net>& nets) {
 	static const int
 		BRACKET = 1,
 		USE = 2,
@@ -552,13 +504,12 @@ const vector<Net> DefReader::ReadNets(ifstream& is)
 		{"USE", 2},
 		{"+", -1}
 	};
-	int count, num;
+	int count;
 	string word, word2;
 	is >> count >> word;
-	vector<Net> nets(count);
+	nets.resize(count);
 	for (Net& net : nets) {
-		is >> word >> word;
-		net.SetName(word);
+		is >> word >> net.Name;
 		bool stop = false;
 		while (!stop) {
 			is >> word;
@@ -575,17 +526,17 @@ const vector<Net> DefReader::ReadNets(ifstream& is)
 				continue;
 				break;
 			case USE:
-				is >> word;
-				net.SetUse(word);
+				is >> net.Use;
 				break;
-			case BRACKET:
-				is >> word >> word2;
-				net.AddCompPinName(word, word2);
+			case BRACKET: {
+				StringPair strPr;
+				is >> strPr.First >> strPr.Second;
+				net.CompPinNames.push_back(strPr);
 				is >> word;
 				break;
+			}
 			}
 		}
 	}
 	is >> word >> word2;
-	return nets;
 }

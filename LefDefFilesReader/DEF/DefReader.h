@@ -1,17 +1,9 @@
 #pragma once
 
-#include "Design/Design.h"
-#include "Design/cell_grid/CellGrid.h"
-#include "Design/net/Net.h"
-#include "Design/row/Row.h"
-#include "Design/specialnet/Specialnet.h"
-#include "Design/track/Track.h"
-#include "Design/via/Via.h"
 #include "../objects/Objects.h"
 
-#include <fstream>
 #include <string>
-
+#include <fstream>
 using namespace std;
 
 class DefReader {
@@ -22,22 +14,22 @@ public:
 	void ReadData(const string& filename, Objects& objs);
 
 private:
+
 	Design ReadDesign(ifstream& is);
 
 	const Row ReadRow(ifstream& is);
 
 	const Track ReadTracks(ifstream& is);
 
-	const CellGrid ReadGCellGrid(ifstream& is);
+	void ReadGCellGrid(ifstream& is, CellGrid& gCellGrid);
 
-	const vector<Via> ReadVias(ifstream& is);
+	void ReadVias(ifstream& is, vector <Via>& vias);
 
-	const vector<Component> ReadComponents(ifstream& is);
+	void ReadComponents(ifstream& is, vector<Component>& components);
 
-	const vector<Pin> ReadPins(ifstream& is);
+	void ReadPins(ifstream& is, vector <Pin>& pins);
 
-	const vector<Specialnet> ReadSpecialnets(ifstream& is);
+	void ReadSpecialnets(ifstream& is, vector <Specialnet>& specialnets);
 
-	const vector<Net> ReadNets(ifstream& is);
-
+	void ReadNets(ifstream& is, vector<Net>& nets);
 };
