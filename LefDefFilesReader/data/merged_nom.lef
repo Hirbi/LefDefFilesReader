@@ -273,7 +273,7 @@ LAYER met5
   OFFSET 1.7 ;
 
   WIDTH 1.6 ;            # Met5 1
-  #SPACING  1.6 ;        # Met5 2
+  # SPACING  1.6 ;        # Met5 2
   SPACINGTABLE
      PARALLELRUNLENGTH 0
      WIDTH 0 1.6 ;
@@ -725,7 +725,7 @@ END M4M5_PR_R
 
 VIARULE M4M5_PR_R GENERATE
   LAYER met4 ;
-  ENCLOSURE 0.19 0.19 ;
+  ENCLOSURE 0.19 0.19 ; 
   LAYER met5 ;
   ENCLOSURE 0.31 0.31 ;
   LAYER via4 ;
