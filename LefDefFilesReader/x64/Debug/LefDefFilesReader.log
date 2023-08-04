@@ -1,2 +1,16 @@
-﻿  main.cpp
+﻿  LEFReader.cpp
+  main.cpp
+  Создание кода...
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(544): warning C4715: LEFReader::readSiteProperties: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(335): warning C4715: LEFReader::readViaRule: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(155): warning C4715: LEFReader::readLEF: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(245): warning C4715: LEFReader::readVia: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(467): warning C4715: LEFReader::readPropertyDefinitions: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(986): warning C4715: LEFReader::readSpacingTable: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1283): warning C4715: LEFReader::readObs: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1128): warning C4715: LEFReader::readMacro: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1234): warning C4715: LEFReader::readPin: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1332): warning C4715: LEFReader::readPort: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(936): warning C4715: LEFReader::readLayerProperties: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1385): warning C4715: LEFReader::readLayer: значение возвращается не при всех путях выполнения
   LefDefFilesReader.vcxproj -> C:\Users\Матвейка\Desktop\LDReader\x64\Debug\LefDefFilesReader.exe

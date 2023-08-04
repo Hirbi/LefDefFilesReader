@@ -26,11 +26,20 @@ struct Enclosure {
     std::string type;
     Point point;
 };
+struct DCCurrentDensity {
+    std::string type;
+    double value;
+};
+struct ACCurrentDensity {
+    std::string type;
+    double value;
+};
 
 
 //Variants structs
 struct Param {
-    std::variant<double, std::string, Point, Resistance, Capacitance, SpacingTable, Enclosure, Rect> num;
+    std::variant<double, std::string, Point, Resistance, Capacitance,
+        SpacingTable, Enclosure, Rect, DCCurrentDensity, ACCurrentDensity> num;
     std::string type;
 };
 
@@ -71,20 +80,6 @@ struct ViaRule {
     std::vector<std::string> layers;
     std::vector<Param> params;
 };
-
-
-//LayerProperty params
-
-struct DCCurrentDensity {
-    std::string type;
-    double value;
-};
-struct ACCurrentDensity {
-    std::string type;
-    double value;
-};
-//struct AntennaDiffRatio{};
-//struct AntennaDiffSideAreaRatio{};
 
 
 //Macro structs

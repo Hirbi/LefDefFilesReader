@@ -106,6 +106,9 @@ LEF LEFReader::readLEF(std::string fileName)
 		}
 		case USEMINSPACING:
 		{
+			//
+			// USEMINSPACING OBS OFF ;
+			// 
 			//TODO fix to normal struct
 			Param param;
 			param.type = word;
@@ -510,11 +513,10 @@ SiteProperty LEFReader::readSiteProperties(std::ifstream& fis, std::string& word
 		}
 		case CLASS:
 		{
-			//TODO fix to normal struct
+			//TODO delete ";"
 			Param param;
 			param.type = word;
 			std::getline(fis, word);
-			//fis >> word;
 			param.num = word;
 			siteProperty.params.push_back(param);
 			break;
@@ -643,6 +645,12 @@ LayerProperty LEFReader::readLayerProperties(std::ifstream& fis, std::string& wo
 		case RESISTANCE:
 		{
 			//TODO fix to normal struct
+			// 
+			// 2 type:
+			// 1. number
+			// 2. word + number
+			// 
+			// 
 			//double value;
 			//Param param;
 			//param.type = word;
@@ -687,6 +695,12 @@ LayerProperty LEFReader::readLayerProperties(std::ifstream& fis, std::string& wo
 		case PITCH:
 		{
 			//TODO fix to normall struct
+			//
+			// 2 type:
+			// 1. number
+			// 2. number + number (Point) 
+			// 
+			// 
 			//Param param;
 			//double first, second;
 			//param.type = word;
@@ -708,6 +722,11 @@ LayerProperty LEFReader::readLayerProperties(std::ifstream& fis, std::string& wo
 		case OFFSET:
 		{
 			//TODO fix to normall struct
+			//
+			// 2 type:
+			// 1. number
+			// 2. number + number (Point) 
+			// 
 			//Param param;
 			//double first, second;
 			//param.type = word;
@@ -807,31 +826,6 @@ LayerProperty LEFReader::readLayerProperties(std::ifstream& fis, std::string& wo
 			fis >> word;
 			break;
 		}
-		//TODO stop here
-		//case CAPACITANCE:
-		//{
-		//	Param param;
-		//	double value;
-		//	std::string type;
-		//	param.type = word;
-		//	fis >> type >> value;
-		//	Capacitance capacitance(type, value);
-		//	param.num = capacitance;
-		//	layerProperty.params.push_back(param);
-		//	break;
-		//}
-		//case RESISTANCE:
-		//{
-		//	Param param;
-		//	double value;
-		//	std::string type;
-		//	param.type = word;
-		//	fis >> type >> value;
-		//	Resistance resistance(type, value);
-		//	param.num = resistance;
-		//	layerProperty.params.push_back(param);
-		//	break;
-		//}
 		case ANTENNAMODEL:
 		{
 			Param param;
@@ -845,6 +839,13 @@ LayerProperty LEFReader::readLayerProperties(std::ifstream& fis, std::string& wo
 		case ANTENNADIFFSIDEAREARATIO:
 		{
 			//TODO fix to normal struct
+			//
+			//  ANTENNADIFFSIDEAREARATIO PWL ( ( 0 400 ) ( 0.0125 400 ) ( 0.0225 2609 ) ( 22.5 11600 ) ) ;
+			// type;
+			// vector<point> points;
+			//
+			//
+			//
 			Param param;
 			param.type = word;
 			std::getline(fis, word);
@@ -856,6 +857,11 @@ LayerProperty LEFReader::readLayerProperties(std::ifstream& fis, std::string& wo
 		case ANTENNADIFFAREARATIO:
 		{
 			//TODO fix to normal struct
+			//
+			// ANTENNADIFFAREARATIO PWL((0 6) (0.0125 6) (0.0225 6.81) (22.5 816));
+			// type;
+			// vector<point> points;
+			//
 			Param param;
 			param.type = word;
 			std::getline(fis, word);
@@ -866,22 +872,22 @@ LayerProperty LEFReader::readLayerProperties(std::ifstream& fis, std::string& wo
 		}
 		case DCCURRENTDENSITY:
 		{
-			//TODO fix to normal struct
 			Param param;
 			param.type = word;
-			std::getline(fis, word);
-			param.num = word;
+			DCCurrentDensity density;
+			fis >> density.type >> density.value;
+			param.num = density;
 			layerProperty.params.push_back(param);
 			fis >> word;
 			break;
 		}
 		case ACCURRENTDENSITY:
 		{
-			//TODO fix to normal struct
 			Param param;
 			param.type = word;
-			std::getline(fis, word);
-			param.num = word;
+			ACCurrentDensity density;
+			fis >> density.type >> density.value;
+			param.num = density;
 			layerProperty.params.push_back(param);
 			fis >> word;
 			break;
