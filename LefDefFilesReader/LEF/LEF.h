@@ -1,65 +1,21 @@
 #pragma once
 
-#include "../lib/containers/rect/Rect.h"
-#include "../lib/containers/point/Point.h"
+#include "../lib/containers/types.h"
 
 #include <vector>
 #include <string>
 #include <variant>
 
-struct Resistance {
-public:
-    std::string type;
-    double value;
-
-};
-struct Capacitance {
-public:
-    std::string type;
-    double value;
-};
-struct SpacingTable {
-    int parallelRunLength;
-    std::vector<Point> widths;
-};
-struct Enclosure {
-    std::string type;
-    Point point;
-};
-struct DCCurrentDensity {
-    std::string type;
-    double value;
-};
-struct ACCurrentDensity {
-    std::string type;
-    double value;
-};
+using namespace LefPrimitiveTypes;
 
 
-//Variants structs
+
 struct Param {
     std::variant<double, std::string, Point, Resistance, Capacitance,
         SpacingTable, Enclosure, Rect, DCCurrentDensity, ACCurrentDensity> num;
     std::string type;
 };
 
-
-//LEFParams structs
-struct Units {
-public:
-    int timeValue;
-    int resistanceValue;
-    int capacitanceValue;
-    int dataBaseValue;
-    std::string timeUnit;
-    std::string resistanceUnit;
-    std::string capacitanceUnit;
-    std::string dataBaseUnit;
-};
-struct PropertyDefinition {
-    std::string layer;
-    std::string type;
-};
 struct SiteProperty {
     std::string name;
     std::vector<Param> params;

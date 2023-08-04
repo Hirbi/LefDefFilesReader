@@ -1,5 +1,5 @@
 #include "LEFReader.h"
-#include "../lib/containers/point/Point.h"
+#include "../lib/containers/types.h"
 #include <cassert>
 #include <iostream>
 #include <fstream>
@@ -1039,7 +1039,11 @@ Macro LEFReader::readMacro(std::ifstream& fis, std::string& word)
 		    }
 		case CLASS:
 		    {
-			//TODO fix to normal struct
+			//TODO fix to normal string
+			//string
+			//string + string
+			//
+			//
 			Param param;
 			param.type = word;
 			std::getline(fis, word);

@@ -1,16 +1,48 @@
 ﻿  LEFReader.cpp
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(212,26): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(212,22): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(222,33): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(222,29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(222,25): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(222,21): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(232,26): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(232,22): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(302,26): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(302,22): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(312,33): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(312,29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(312,25): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(312,21): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(322,26): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(322,22): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(530,24): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(530,17): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(792,23): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(792,16): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(911,36): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(911,29): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(980,44): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(980,40): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1079,24): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1079,17): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1090,24): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1090,17): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1378,43): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1378,39): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1378,35): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1378,31): warning C4244: аргумент: преобразование "double" в "int", возможна потеря данных
   main.cpp
   Создание кода...
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(245): warning C4715: LEFReader::readVia: значение возвращается не при всех путях выполнения
 C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(544): warning C4715: LEFReader::readSiteProperties: значение возвращается не при всех путях выполнения
 C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(335): warning C4715: LEFReader::readViaRule: значение возвращается не при всех путях выполнения
 C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(155): warning C4715: LEFReader::readLEF: значение возвращается не при всех путях выполнения
-C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(245): warning C4715: LEFReader::readVia: значение возвращается не при всех путях выполнения
 C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(467): warning C4715: LEFReader::readPropertyDefinitions: значение возвращается не при всех путях выполнения
 C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(986): warning C4715: LEFReader::readSpacingTable: значение возвращается не при всех путях выполнения
-C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1283): warning C4715: LEFReader::readObs: значение возвращается не при всех путях выполнения
-C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1128): warning C4715: LEFReader::readMacro: значение возвращается не при всех путях выполнения
-C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1234): warning C4715: LEFReader::readPin: значение возвращается не при всех путях выполнения
-C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1332): warning C4715: LEFReader::readPort: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1287): warning C4715: LEFReader::readObs: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1238): warning C4715: LEFReader::readPin: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1132): warning C4715: LEFReader::readMacro: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1336): warning C4715: LEFReader::readPort: значение возвращается не при всех путях выполнения
 C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(936): warning C4715: LEFReader::readLayerProperties: значение возвращается не при всех путях выполнения
-C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1385): warning C4715: LEFReader::readLayer: значение возвращается не при всех путях выполнения
+C:\Users\Матвейка\Desktop\LDReader\LefDefFilesReader\LEF\LEFReader.cpp(1389): warning C4715: LEFReader::readLayer: значение возвращается не при всех путях выполнения
   LefDefFilesReader.vcxproj -> C:\Users\Матвейка\Desktop\LDReader\x64\Debug\LefDefFilesReader.exe
