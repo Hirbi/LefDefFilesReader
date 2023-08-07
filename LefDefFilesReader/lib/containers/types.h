@@ -22,10 +22,10 @@ namespace PrimitiveTypes {
 	};
 
 	struct Point {
-		int First;
-		int Second;
+		double First;
+		double Second;
 
-		Point(int v1 = 0, int v2 = 0) : First(v1), Second(v2)
+		Point(double v1 = 0, double v2 = 0) : First(v1), Second(v2)
 		{}
 	};
 
@@ -35,11 +35,7 @@ namespace PrimitiveTypes {
 
 		Rect(Point first, Point second) : First(first), Second(second)
 		{}
-<<<<<<< .merge_file_BAnFkW
-		Rect(int v1 = 0, int v2 = 0, int v3 = 0, int v4 = 0) : First(v1, v2), Second(v3, v4) 
-=======
-		Rect(int v1 = 0, int v2 = 0, int v3 = 0, int v4 = 0) : First(v1, v2), Second(v3, v4)
->>>>>>> .merge_file_1GxjgD
+		Rect(double v1 = 0, double v2 = 0, double v3 = 0, double v4 = 0) : First(v1, v2), Second(v3, v4)
 		{}
 	};
 }
@@ -65,8 +61,6 @@ namespace DefPrimitiveTypes {
 		string TopMetalLayer;
 	};
 }
-<<<<<<< .merge_file_BAnFkW
-=======
 
 namespace LefPrimitiveTypes {
 
@@ -115,4 +109,3 @@ namespace LefPrimitiveTypes {
 		std::string type;
 	};
 }
->>>>>>> .merge_file_1GxjgD

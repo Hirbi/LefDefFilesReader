@@ -2,7 +2,7 @@
 #include "DefReader.h"
 #include "def_types.h"
 #include "../lib/functions/functions.h"
-#include "../LEF/lef_files.h"
+#include "../LEF/LEF.h"
 
 #include <assert.h>
 #include <iostream>
@@ -280,11 +280,11 @@ const Port ReadOnePort(ifstream& is) {
 		case LAYER: {
 			Layer layer;
 			Rect rect;
-			is >> layer.Name;
+			is >> layer.name;
 			is >> word >> rect.First.First >> rect.First.Second >> word;
 			is >> word >> rect.Second.First >> rect.Second.Second >> word;
-			layer.Rects.push_back(rect);
-			port.Layers.push_back(layer);
+			layer.rects.push_back(rect);
+			port.layers.push_back(layer);
 			break;
 		}
 		case FIXED_PLACED: {
@@ -324,7 +324,7 @@ void DefReader::ReadPins(ifstream& is, vector <Pin>& pins) {
 	pins.resize(count);
 	for (Pin& pin : pins) {
 		bool stop = false;
-		is >> word >> pin.Name;
+		is >> word >> pin.name;
 		while (!stop) {
 			is >> word;
 			auto it = KEY_PIN.find(word);
@@ -377,7 +377,7 @@ const vector<RoutingLayer> ReadRoutingLayers(ifstream& is) {
 	int num;
 	while (is >> word) {
 		RoutingLayer rLayer;
-		rLayer.Name = word;
+		rLayer.name = word;
 		is >> rLayer.RouteWidth;
 		bool stop = false;
 		while (!stop) {

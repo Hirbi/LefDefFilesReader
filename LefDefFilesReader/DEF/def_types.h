@@ -1,8 +1,7 @@
 #pragma once
 
 #include "../lib/containers/types.h"
-
-#include "../LEF/lef_files.h"
+#include "../LEF/LEF.h"
 
 #include <string>
 #include <vector>
@@ -57,17 +56,6 @@ namespace DefTypes {
 		int NumTracks;
 		int Space;
 		vector <string> Layers;
-	};
-
-	struct Via {
-		string ViaName;
-		string ViaRule;
-		Point CutSize;
-		DefPrimitiveTypes::VLayers ViaLayers;
-		Point CutSpacing;
-		Rect Enclosure; //  xBotEnc yBotEnc xTopEnc yTopEnc
-		// optional
-		Point RowCol;
 	};
 }
 

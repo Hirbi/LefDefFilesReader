@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{2a6b02e2-77e5-47bb-880b-bc30b03709ca}</ProjectGuid>
-    <RootNamespace>LefDefFilesReader</RootNamespace>
+    <ProjectGuid>{abde047a-be5d-4308-b5df-b25ad83e0f63}</ProjectGuid>
+    <RootNamespace>Project1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -119,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,33 +129,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DEF\DefReader.cpp" />
-    <ClCompile Include="lib\functions\functions.cpp" />
-    <ClCompile Include="LEF\LEFReader.cpp" />
-    <ClCompile Include="LEF\LEF.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\.gitignore" />
     <None Include="data\lut_s44.def" />
-    <None Include="data\merged_nom.lef" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DEF\DefReader.h" />
     <None Include="data\test2.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DEF\DefReader.h" />
     <ClInclude Include="DEF\def_types.h" />
-    <ClInclude Include="LEF\lef_files.h" />
-    <ClInclude Include="lib\containers\types.h" />
-    <ClInclude Include="LEF\LEFReader.h" />
     <ClInclude Include="LEF\LEF.h" />
+    <ClInclude Include="LEF\LEFReader.h" />
+    <ClInclude Include="lib\containers\types.h" />
     <ClInclude Include="lib\functions\functions.h" />
     <ClInclude Include="objects\Objects.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="data\MacroTest.txt" />
+    <ClCompile Include="DEF\DefReader.cpp" />
+    <ClCompile Include="LEF\LEF.cpp" />
+    <ClCompile Include="LEF\LEFReader.cpp" />
+    <ClCompile Include="lib\functions\functions.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="objects\Objects.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1223,7 +1223,7 @@ Pin LEFReader::readPin(std::ifstream& fis, std::string& word) {
 		}
 		case PORT:
 		{
-			pin.port = readPort(fis, word);
+			pin.Ports.push_back(readPort(fis, word));
 			break;
 		}
 		case END:
