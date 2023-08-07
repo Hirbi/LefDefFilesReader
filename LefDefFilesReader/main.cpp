@@ -1,4 +1,5 @@
 #include "DEF/DefReader.h"
+#include "LEF/LEFReader.h"
 #include "lib/functions/functions.h"
 #include "objects/Objects.h"
 
@@ -26,4 +27,12 @@ int main() {
 		sum += search_time;
 	}
 	cout << "\nmid= " << sum * 1.0 / count;
+    LEFReader reader;
+    LEF lef;
+    unsigned int start_time = clock();
+    lef = reader.readLEF("data/merged_nom.lef");
+    unsigned int end_time = clock();
+    unsigned int search_time = end_time - start_time;
+    std::cout << "Read time: " << search_time << "\n\n";
+    cout << "suc";
 }

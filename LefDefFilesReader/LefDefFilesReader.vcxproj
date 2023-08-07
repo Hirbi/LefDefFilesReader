@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,38 +129,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DEF\DefReader.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="DEF\Design\cell_grid\CellGrid.cpp" />
-    <ClCompile Include="DEF\Design\component\Component.cpp" />
-    <ClCompile Include="DEF\Design\Design.cpp" />
-    <ClCompile Include="DEF\Design\row\Row.cpp" />
-    <ClCompile Include="DEF\Design\track\Track.cpp" />
-    <ClCompile Include="DEF\Design\via\Via.cpp" />
-    <ClCompile Include="lib\containers\point\Point.cpp" />
-    <ClCompile Include="lib\containers\rect\Rect.cpp" />
-=======
->>>>>>> DefDev
     <ClCompile Include="lib\functions\functions.cpp" />
+    <ClCompile Include="LEF\LEFReader.cpp" />
+    <ClCompile Include="LEF\LEF.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="objects\Objects.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.gitignore" />
     <None Include="data\lut_s44.def" />
     <None Include="data\merged_nom.lef" />
-<<<<<<< HEAD
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DEF\DefReader.h" />
-    <ClInclude Include="DEF\Design\cell_grid\CellGrid.h" />
-    <ClInclude Include="DEF\Design\component\Component.h" />
-    <ClInclude Include="DEF\Design\Design.h" />
-    <ClInclude Include="DEF\Design\row\Row.h" />
-    <ClInclude Include="DEF\Design\track\Track.h" />
-    <ClInclude Include="DEF\Design\via\Via.h" />
-    <ClInclude Include="lib\containers\point\Point.h" />
-    <ClInclude Include="lib\containers\rect\Rect.h" />
-=======
     <None Include="data\test2.def" />
   </ItemGroup>
   <ItemGroup>
@@ -167,9 +148,13 @@
     <ClInclude Include="DEF\def_types.h" />
     <ClInclude Include="LEF\lef_files.h" />
     <ClInclude Include="lib\containers\types.h" />
->>>>>>> DefDev
+    <ClInclude Include="LEF\LEFReader.h" />
+    <ClInclude Include="LEF\LEF.h" />
     <ClInclude Include="lib\functions\functions.h" />
     <ClInclude Include="objects\Objects.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="data\MacroTest.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
