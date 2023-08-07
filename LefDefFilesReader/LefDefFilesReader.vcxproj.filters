@@ -18,12 +18,17 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="objects\Objects.cpp">
+=======
+    <ClCompile Include="DEF\DefReader.cpp">
+>>>>>>> DefDev
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="lib\functions\functions.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="lib\containers\rect\Rect.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -49,6 +54,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="DEF\Design\cell_grid\CellGrid.cpp">
+=======
+    <ClCompile Include="objects\Objects.cpp">
+>>>>>>> DefDev
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -60,6 +68,7 @@
       <Filter>Исходные файлы</Filter>
     </None>
     <None Include="data\merged_nom.lef" />
+<<<<<<< HEAD
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\Objects.h">
@@ -72,11 +81,32 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="lib\containers\point\Point.h">
+=======
+    <None Include="data\test2.def">
+      <Filter>Исходные файлы</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lib\functions\functions.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\Objects.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="DEF\def_types.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\containers\types.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="LEF\lef_files.h">
+>>>>>>> DefDev
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="DEF\DefReader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="DEF\Design\via\Via.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
@@ -95,5 +125,7 @@
     <ClInclude Include="DEF\Design\cell_grid\CellGrid.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+=======
+>>>>>>> DefDev
   </ItemGroup>
 </Project>

@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DEF\DefReader.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="DEF\Design\cell_grid\CellGrid.cpp" />
     <ClCompile Include="DEF\Design\component\Component.cpp" />
     <ClCompile Include="DEF\Design\Design.cpp" />
@@ -136,6 +137,8 @@
     <ClCompile Include="DEF\Design\via\Via.cpp" />
     <ClCompile Include="lib\containers\point\Point.cpp" />
     <ClCompile Include="lib\containers\rect\Rect.cpp" />
+=======
+>>>>>>> DefDev
     <ClCompile Include="lib\functions\functions.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="objects\Objects.cpp" />
@@ -144,6 +147,7 @@
     <None Include="..\.gitignore" />
     <None Include="data\lut_s44.def" />
     <None Include="data\merged_nom.lef" />
+<<<<<<< HEAD
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DEF\DefReader.h" />
@@ -155,6 +159,15 @@
     <ClInclude Include="DEF\Design\via\Via.h" />
     <ClInclude Include="lib\containers\point\Point.h" />
     <ClInclude Include="lib\containers\rect\Rect.h" />
+=======
+    <None Include="data\test2.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DEF\DefReader.h" />
+    <ClInclude Include="DEF\def_types.h" />
+    <ClInclude Include="LEF\lef_files.h" />
+    <ClInclude Include="lib\containers\types.h" />
+>>>>>>> DefDev
     <ClInclude Include="lib\functions\functions.h" />
     <ClInclude Include="objects\Objects.h" />
   </ItemGroup>
